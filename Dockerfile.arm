@@ -1,0 +1,22 @@
+ARG target=arm32v6
+FROM $target/alpine
+
+ARG arch=arm
+ENV ARCH=$arch
+
+ARG tag=arm
+ENV TAG=$tag
+
+COPY qemu-$ARCH-static* /usr/bin/
+
+MAINTAINER Carlos Eduardo de Paula<carlosedp@gmail.com>
+
+# Dockerfile application commands from this point on
+
+RUN apk add --no-cache ca-certificates
+
+ADD ark /ark
+
+USER nobody:nobody
+
+ENTRYPOINT ["/ark"]
