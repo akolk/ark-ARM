@@ -18,7 +18,7 @@ script:
   - export DIR=`pwd`
 # Download
   - 'export VERSION=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")'
-  - 'export DOWNLOAD_URL=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/releases/latest  | jq -r ".assets[].browser_download_url" | grep "linux-${TAG}")'
+  - 'export DOWNLOAD_URL=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/releases/latest  | jq -r ".assets[].browser_download_url" | grep "linux-${TAG}.tar.gz")'
   - echo "Building ${GITHUB_REPO} version ${VERSION} for ${TAG}."
   - curl -L -o ${IMAGE}.tar.gz ${DOWNLOAD_URL} && tar zx -f ${IMAGE}.tar.gz
 # Get QEMU
